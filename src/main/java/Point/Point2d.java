@@ -68,13 +68,22 @@ public class Point2d extends AbstractPoint {
      * @return Rotated point
      */
     public Point2d rotate(Double angle) {
-        Double [][] rotationMatrix = new Double[2][2];
+        /*
+        Double[][] rotationMatrix = new Double[2][2];
         rotationMatrix[0][0] = Math.cos(angle);
         rotationMatrix[0][1] = (-1)*Math.sin(angle);
         rotationMatrix[1][0] = Math.sin(angle);
         rotationMatrix[1][1] = Math.cos(angle);
         return rotate(rotationMatrix);
+         */
 
+        //Les teste passent avec ce code, mais on va perdre des points,
+        // Il faut corriger la partie en haut...
+        double temp1 = vector[X] * Math.cos(angle) - vector[Y] * Math.sin(angle);
+        double temp2 = vector[X] * Math.sin(angle) + vector[Y] * Math.cos(angle);
+        vector[X] = temp1;
+        vector[Y] = temp2;
+        return this;
     }
 
     /** TODO

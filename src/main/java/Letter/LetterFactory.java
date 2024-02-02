@@ -20,13 +20,12 @@ public final class LetterFactory {
         Double angle1 = Math.PI / 4;
         Double angle2 = 7 * Math.PI / 4;
         Rectangle rectangle1 = new Rectangle(halfMaxWidth, halfMaxHeight);
-//        rectangle1.rotate(rectangle1.getCoords(), angle1);
-//        Rectangle rectangle2 = new Rectangle(halfMaxWidth, halfMaxHeight);
+        rectangle1.rotate(rectangle1.getCoords(), angle1);
+        Rectangle rectangle2 = new Rectangle(halfMaxWidth, halfMaxHeight);
         Point2d translateVector = new Point2d(halfMaxWidth, halfMaxHeight);
-//        rectangle2.translate(rectangle2.getCoords(), translateVector);
-//        rectangle2.rotate(rectangle2.getCoords(), angle2);
+        rectangle2.translate(rectangle2.getCoords(), translateVector);
+        rectangle2.rotate(rectangle2.getCoords(), angle2);
         BaseShape finalShape = new BaseShape(rectangle1.cloneCoords());
-//        finalShape.addAll(rectangle2.cloneCoords());
         return finalShape;
     }
 
@@ -36,7 +35,8 @@ public final class LetterFactory {
      */
     public static BaseShape create_B() {
         Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
-        return rectangle;
+        BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
+        return finalshape;
     }
 
     /** TODO
@@ -45,7 +45,8 @@ public final class LetterFactory {
      */
     public static BaseShape create_C() {
         Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
-        return rectangle;
+        BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
+        return finalshape;
     }
 
     /** TODO
@@ -54,7 +55,8 @@ public final class LetterFactory {
      */
     public static BaseShape create_E() {
         Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
-        return rectangle;
+        BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
+        return finalshape;
     }
 
     /** TODO
@@ -63,7 +65,8 @@ public final class LetterFactory {
      */
     public static BaseShape create_H() {
         Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
-        return rectangle;
+        BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
+        return finalshape;
     }
 
     /** TODO
@@ -72,7 +75,8 @@ public final class LetterFactory {
      */
     public static BaseShape create_N() {
         Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
-        return rectangle;
+        BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
+        return finalshape;
     }
 
     /** TODO
@@ -81,7 +85,8 @@ public final class LetterFactory {
      */
     public static BaseShape create_O() {
         Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
-        return rectangle;
+        BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
+        return finalshape;
     }
 
 }

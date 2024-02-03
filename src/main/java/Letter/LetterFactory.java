@@ -17,15 +17,16 @@ public final class LetterFactory {
      * @return BaseShape containing the letter A
      */
     public static BaseShape create_A()  {
-        Double angle1 = Math.PI / 4;
-        Double angle2 = 7 * Math.PI / 4;
-        Rectangle rectangle1 = new Rectangle(halfMaxWidth, halfMaxHeight);
+        Double angle1 = Math.PI / 6;
+        Double angle2 = 11 * Math.PI / 6;
+        Rectangle rectangle1 = new Rectangle(stripeThickness, maxHeight);
         rectangle1.rotate(rectangle1.getCoords(), angle1);
-        Rectangle rectangle2 = new Rectangle(halfMaxWidth, halfMaxHeight);
-        Point2d translateVector = new Point2d(halfMaxWidth, halfMaxHeight);
+        Rectangle rectangle2 = new Rectangle(stripeThickness, maxHeight);
+        Point2d translateVector = new Point2d(50.0, 0.0);
         rectangle2.translate(rectangle2.getCoords(), translateVector);
         rectangle2.rotate(rectangle2.getCoords(), angle2);
         BaseShape finalShape = new BaseShape(rectangle1.cloneCoords());
+        finalShape.addAll(rectangle2.cloneCoords());
         return finalShape;
     }
 

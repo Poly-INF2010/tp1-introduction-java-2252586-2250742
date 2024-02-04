@@ -35,7 +35,8 @@ public class Rectangle extends BaseShape {
      */
     public Rectangle(Point2d dimensions) {
         Double width = dimensions.X();
-        Double height = dimensions.Y();;
+        Double height = dimensions.Y();
+
         Double centerX = -(width / 2.0);
         Double centerY = -(height / 2.0);
 
@@ -60,33 +61,12 @@ public class Rectangle extends BaseShape {
         Double maxX = tempBaseShape.getMaxX();
         Double minY = tempBaseShape.getMinY();
         Double maxY = tempBaseShape.getMaxY();
-        Double width = 0.0;
-        Double height = 0.0;
-
-        if (Math.abs(maxX) > Math.abs(minX)){
-            width = maxX;
-            if (minX < 0.0){
-                width += Math.abs(minX);
-            }
-        }
-        else {
-            width = Math.abs(minX);
-            if (maxX > 0.0){
-                width += maxX;
-            }
-        }
-        if (Math.abs(maxY) > Math.abs(minY)){
-            height = maxY;
-            if (minY < 0.0){
-                height += Math.abs(minY);
-            }
-        }
-        else {
-            height = Math.abs(minY);
-            if (maxY > 0.0){
-                width += maxY;
-            }
-        }
+        Double width = Math.abs(maxX) > Math.abs(minX)
+                ? maxX + (minX < 0.0 ? Math.abs(minX) : 0.0)
+                : Math.abs(minX) + (maxX > 0.0 ? maxX : 0.0);
+        Double height = Math.abs(maxY) > Math.abs(minY)
+                ? maxY + (minY < 0.0 ? Math.abs(minY) : 0.0)
+                : Math.abs(minY) + (maxY > 0.0 ? maxY : 0.0);
 
         Double centerX = -(width / 2.0);
         Double centerY = -(height / 2.0);

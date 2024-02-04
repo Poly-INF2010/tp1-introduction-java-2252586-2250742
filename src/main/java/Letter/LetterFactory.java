@@ -7,15 +7,13 @@ public final class LetterFactory {
     final static Double maxHeight = 150.0;
     final static Double maxWidth = maxHeight / 2.5;
     final static Double halfMaxHeight = maxHeight / 2;
-
     final static Double circleRadius = maxHeight / 1.8;
-
+    final static Double ellipseToBeRemovedWidth = maxWidth / 1.15;    /*maxwidth diviser par 1.3 marche bien*/
+    final static Double ellipseToBeRemovedHeight = maxHeight / 1.1;  /*1.3 marche bien*/
     final static Double circleRadiusToBeRemoved = circleRadius / 1.45;
-
     final static Double halfMaxWidth = maxWidth / 2;
     final static Double stripeThickness = maxHeight / 8;
     final static Double halfStripeThickness = stripeThickness / 2;
-
     final static Double lessThanHalfMaxHeight = halfMaxHeight / 2;
 
     /**
@@ -76,8 +74,16 @@ public final class LetterFactory {
      * @return BaseShape containing the letter C
      */
     public static BaseShape create_C() {
-        Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
-        BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
+        Rectangle rectangle = new Rectangle(halfMaxWidth, maxHeight / 1.4);   /*maxHeight / 1.3*/
+        Ellipse ellipse = new Ellipse(maxWidth, maxHeight);
+        Ellipse ellipseToBeRemoved = new Ellipse(ellipseToBeRemovedWidth, ellipseToBeRemovedHeight);
+        Point2d translateVectorEllipseToBeRemoved = new Point2d(3.0, 0.0); /*10 comme x*/
+        Point2d translateVectorRectangleToBeRemoved = new Point2d(15.0, 0.0);
+        rectangle.translate(rectangle.getCoords(), translateVectorRectangleToBeRemoved);
+        ellipseToBeRemoved.translate(ellipseToBeRemoved.getCoords(), translateVectorEllipseToBeRemoved);
+        ellipse.remove(ellipseToBeRemoved);
+        ellipse.remove(rectangle);
+        BaseShape finalshape = new BaseShape(ellipse.cloneCoords());
         return finalshape;
     }
 

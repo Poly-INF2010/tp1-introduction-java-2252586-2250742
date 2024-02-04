@@ -127,10 +127,26 @@ public final class LetterFactory {
      * @return BaseShape containing the letter H
      */
     public static BaseShape create_H() {
-        Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
-        Rectangle rectangle2 = new Rectangle(halfMaxWidth, halfMaxHeight);
-        BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
-        return finalshape;
+        BaseShape h = new BaseShape();
+        Rectangle leftRectangle = new Rectangle(halfStripeThickness,maxHeight);
+        Rectangle rightRectangle = new Rectangle(halfStripeThickness,maxHeight);
+        Rectangle midRectangle = new Rectangle(halfStripeThickness,halfMaxHeight - 2.9);
+
+
+
+        Point2d rightBarTranslationVector = new Point2d(maxWidth, 0.0);
+        Double rotationAngle = Math.PI/2;
+        Point2d midBarTranslationVector = new Point2d(30.0, 0.0);
+
+        rightRectangle.translate(rightRectangle.getCoords(), rightBarTranslationVector);
+        midRectangle.rotate(midRectangle.getCoords(), rotationAngle);
+        midRectangle.translate(midRectangle.getCoords(), midBarTranslationVector);
+
+        h.addAll(leftRectangle.getCoords());
+        h.addAll(rightRectangle.getCoords());
+        h.addAll(midRectangle.getCoords());
+
+        return h;
         //return null;
     }
 
@@ -169,9 +185,13 @@ public final class LetterFactory {
      * @return BaseShape containing the letter O
      */
     public static BaseShape create_O() {
-        Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
-        BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
-        return finalshape;
+        BaseShape o = new BaseShape();
+        Ellipse smallEllipse = new Ellipse(1.5*halfMaxWidth, 1.5*halfMaxHeight);
+        Ellipse bigElipse = new Ellipse(maxWidth, maxHeight);
+
+        o.addAll(bigElipse.cloneCoords());
+        o.removeAll(smallEllipse.getCoords());
+        return o;
     }
 
 }

@@ -128,8 +128,10 @@ public final class LetterFactory {
      */
     public static BaseShape create_H() {
         Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
+        Rectangle rectangle2 = new Rectangle(halfMaxWidth, halfMaxHeight);
         BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
         return finalshape;
+        //return null;
     }
 
     /**
@@ -139,9 +141,25 @@ public final class LetterFactory {
      * @return BaseShape containing the letter N
      */
     public static BaseShape create_N() {
-        Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
-        BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
-        return finalshape;
+        BaseShape n = new BaseShape();
+        Rectangle leftRectangle = new Rectangle(halfStripeThickness,maxHeight);
+        Rectangle rightRectangle = new Rectangle(halfStripeThickness,maxHeight);
+        Rectangle midRectangle = new Rectangle(halfStripeThickness,maxHeight + halfMaxHeight/6);
+
+        Point2d rightBarTranslationVector = new Point2d(maxWidth, 0.0);
+        Point2d midBarTranslationVector = new Point2d(halfMaxWidth, 0.0);
+        Double rotationAngle = 11.3 * Math.PI/6;
+
+        rightRectangle.translate(rightRectangle.getCoords(),rightBarTranslationVector);
+        midRectangle.translate(midRectangle.getCoords(), midBarTranslationVector);
+        midRectangle.rotate(midRectangle.getCoords(),rotationAngle);
+        midRectangle.translate(midRectangle.getCoords(),  new Point2d(0.0, 10.0));
+
+        n.addAll(leftRectangle.cloneCoords());
+        n.addAll(rightRectangle.cloneCoords());
+        n.addAll(midRectangle.cloneCoords());
+
+        return n;
     }
 
     /**

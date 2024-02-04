@@ -32,24 +32,24 @@ public final class LetterFactory {
         Double angle2 = (11 * Math.PI + 1.5) / 6;
         Double angle3 = Math.PI / 2;
 
-        Rectangle rectangle1 = new Rectangle(halfStripeThickness, maxHeight);
-        Rectangle rectangle2 = new Rectangle(halfStripeThickness, maxHeight);
-        Rectangle rectangle3 = new Rectangle(halfStripeThickness, lessThanHalfMaxHeight);
+        Rectangle leftDiagonalRectangle = new Rectangle(halfStripeThickness, maxHeight);
+        Rectangle rightDiagonalRectangle = new Rectangle(halfStripeThickness, maxHeight);
+        Rectangle middleBarRectangle = new Rectangle(halfStripeThickness, lessThanHalfMaxHeight);
 
-        Point2d translateVectorRectangle1 = new Point2d(3.0, 0.0);
-        Point2d translateVectorRectangle2 = new Point2d(42.5, 12.2);
-        Point2d translateVectorRectangle3 = new Point2d(30.0, 0.0);
+        Point2d translateVectorleftDiagonal = new Point2d(3.0, 0.0);
+        Point2d translateVectorRightDiagonal = new Point2d(42.5, 12.2);
+        Point2d translateVectorMiddleBar = new Point2d(30.0, 0.0);
 
-        rectangle1.rotate(rectangle1.getCoords(), angle1);
-        rectangle2.translate(rectangle2.getCoords(), translateVectorRectangle2);
-        rectangle1.translate(rectangle1.getCoords(), translateVectorRectangle1);
-        rectangle2.rotate(rectangle2.getCoords(), angle2);
-        rectangle3.rotate(rectangle3.getCoords(), angle3);
-        rectangle3.translate(rectangle3.getCoords(), translateVectorRectangle3);
+        leftDiagonalRectangle.rotate(leftDiagonalRectangle.getCoords(), angle1);
+        rightDiagonalRectangle.translate(rightDiagonalRectangle.getCoords(), translateVectorRightDiagonal);
+        leftDiagonalRectangle.translate(leftDiagonalRectangle.getCoords(), translateVectorleftDiagonal);
+        rightDiagonalRectangle.rotate(rightDiagonalRectangle.getCoords(), angle2);
+        middleBarRectangle.rotate(middleBarRectangle.getCoords(), angle3);
+        middleBarRectangle.translate(middleBarRectangle.getCoords(), translateVectorMiddleBar);
 
-        return new BaseShape(rectangle1.cloneCoords())
-                .addAll(rectangle2.cloneCoords())
-                .addAll(rectangle3.cloneCoords());
+        return new BaseShape(leftDiagonalRectangle.cloneCoords())
+                .addAll(rightDiagonalRectangle.cloneCoords())
+                .addAll(middleBarRectangle.cloneCoords());
     }
 
     /**
@@ -61,20 +61,20 @@ public final class LetterFactory {
     public static BaseShape create_B() {
         Rectangle rectangle = new Rectangle(stripeThickness, maxHeight);
         Circle circleToBeRemoved = new Circle(circleRadiusToBeRemoved);
-        Circle circle1 = new Circle(circleRadius);
-        Circle circle2 = new Circle(circleRadius);
+        Circle topCircle = new Circle(circleRadius);
+        Circle bottomCircle = new Circle(circleRadius);
 
-        Point2d translateVectorCircle1 = new Point2d(32.0, -33.5);
-        Point2d translateVectorCircle2 = new Point2d(32.0, 33.5);
+        Point2d translateVectorTopCircle = new Point2d(32.0, -33.5);
+        Point2d translateVectorBottomCircle = new Point2d(32.0, 33.5);
 
-        circle1.removeAll(circleToBeRemoved.getCoords());
-        circle2.removeAll(circleToBeRemoved.getCoords());
-        circle1.translate(circle1.getCoords(), translateVectorCircle1);
-        circle2.translate(circle2.getCoords(), translateVectorCircle2);
+        topCircle.removeAll(circleToBeRemoved.getCoords());
+        bottomCircle.removeAll(circleToBeRemoved.getCoords());
+        topCircle.translate(topCircle.getCoords(), translateVectorTopCircle);
+        bottomCircle.translate(bottomCircle.getCoords(), translateVectorBottomCircle);
 
         return new BaseShape(rectangle.cloneCoords())
-                .addAll(circle1.cloneCoords())
-                .addAll(circle2.cloneCoords());
+                .addAll(topCircle.cloneCoords())
+                .addAll(bottomCircle.cloneCoords());
     }
 
     /**
@@ -84,17 +84,17 @@ public final class LetterFactory {
      * @return BaseShape containing the letter C
      */
     public static BaseShape create_C() {
-        Rectangle rectangle = new Rectangle(halfMaxWidth, maxHeight / 1.4);   /*maxHeight / 1.3*/
+        Rectangle rectangleToBeRemoved = new Rectangle(halfMaxWidth, maxHeight / 1.4);
         Ellipse ellipseToBeRemoved = new Ellipse(ellipseToBeRemovedWidth, ellipseToBeRemovedHeight);
         Ellipse ellipse = new Ellipse(maxWidth, maxHeight);
 
-        Point2d translateVectorEllipseToBeRemoved = new Point2d(3.0, 0.0); /*10 comme x*/
+        Point2d translateVectorEllipseToBeRemoved = new Point2d(3.0, 0.0);
         Point2d translateVectorRectangleToBeRemoved = new Point2d(15.0, 0.0);
 
-        rectangle.translate(rectangle.getCoords(), translateVectorRectangleToBeRemoved);
+        rectangleToBeRemoved.translate(rectangleToBeRemoved.getCoords(), translateVectorRectangleToBeRemoved);
         ellipseToBeRemoved.translate(ellipseToBeRemoved.getCoords(), translateVectorEllipseToBeRemoved);
         ellipse.remove(ellipseToBeRemoved);
-        ellipse.remove(rectangle);
+        ellipse.remove(rectangleToBeRemoved);
 
         return new BaseShape(ellipse.cloneCoords());
     }

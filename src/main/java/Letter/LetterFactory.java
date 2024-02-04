@@ -2,11 +2,16 @@ package Letter;
 
 import Point.Point2d;
 import Shape.*;
+import Shape.Rectangle;
+
+import java.awt.*;
+import java.util.logging.XMLFormatter;
 
 public final class LetterFactory {
     final static Double maxHeight = 150.0;
     final static Double maxWidth = maxHeight / 2.5;
     final static Double halfMaxHeight = maxHeight / 2;
+    final static Double horizontalBarHeight = maxHeight / 2.8;
     final static Double circleRadius = maxHeight / 1.8;
     final static Double ellipseToBeRemovedWidth = maxWidth / 1.15;    /*maxwidth diviser par 1.3 marche bien*/
     final static Double ellipseToBeRemovedHeight = maxHeight / 1.1;  /*1.3 marche bien*/
@@ -94,8 +99,24 @@ public final class LetterFactory {
      * @return BaseShape containing the letter E
      */
     public static BaseShape create_E() {
-        Rectangle rectangle = new Rectangle(halfMaxWidth, halfMaxHeight);
-        BaseShape finalshape = new BaseShape(rectangle.cloneCoords());
+        Rectangle verticalRectangle = new Rectangle(halfStripeThickness,maxHeight);
+        Rectangle topBarRectangle = new Rectangle(halfStripeThickness, horizontalBarHeight);
+        Rectangle middleBarRectangle = new Rectangle(halfStripeThickness, horizontalBarHeight);
+        Rectangle bottomBarRectangle = new Rectangle(halfStripeThickness, horizontalBarHeight);
+        Double horizontalAngle = 2 * Math.PI / 4;
+        Point2d topBarTranslationVector = new Point2d(37.0, -70.0);
+        Point2d middleBarTranslationVector = new Point2d(37.0, 0.0);
+        Point2d bottomBarTranslationVector = new Point2d(37.0, 70.0);
+        topBarRectangle.rotate(topBarRectangle.getCoords(), horizontalAngle);
+        middleBarRectangle.rotate(middleBarRectangle.getCoords(), horizontalAngle);
+        bottomBarRectangle.rotate(bottomBarRectangle.getCoords(), horizontalAngle);
+        topBarRectangle.translate(topBarRectangle.getCoords(), topBarTranslationVector);
+        middleBarRectangle.translate(middleBarRectangle.getCoords(), middleBarTranslationVector);
+        bottomBarRectangle.translate(bottomBarRectangle.getCoords(), bottomBarTranslationVector);
+        BaseShape finalshape = new BaseShape(verticalRectangle.cloneCoords());
+        finalshape.add(topBarRectangle);
+        finalshape.add(middleBarRectangle);
+        finalshape.add(bottomBarRectangle);
         return finalshape;
     }
 

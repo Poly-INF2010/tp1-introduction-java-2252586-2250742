@@ -104,9 +104,9 @@ public final class LetterFactory {
         Rectangle middleBarRectangle = new Rectangle(halfStripeThickness, horizontalBarHeight);
         Rectangle bottomBarRectangle = new Rectangle(halfStripeThickness, horizontalBarHeight);
         Double horizontalAngle = 2 * Math.PI / 4;
-        Point2d topBarTranslationVector = new Point2d(37.0, -70.0);
-        Point2d middleBarTranslationVector = new Point2d(37.0, 0.0);
-        Point2d bottomBarTranslationVector = new Point2d(37.0, 70.0);
+        Point2d topBarTranslationVector = new Point2d(35.0, -70.0);
+        Point2d middleBarTranslationVector = new Point2d(35.0, 0.0);
+        Point2d bottomBarTranslationVector = new Point2d(35.0, 70.0);
         topBarRectangle.rotate(topBarRectangle.getCoords(), horizontalAngle);
         middleBarRectangle.rotate(middleBarRectangle.getCoords(), horizontalAngle);
         bottomBarRectangle.rotate(bottomBarRectangle.getCoords(), horizontalAngle);

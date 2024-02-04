@@ -11,22 +11,31 @@ public final class LetterFactory {
     final static Double stripeThickness = maxHeight / 8;
     final static Double halfStripeThickness = stripeThickness / 2;
 
+    final static Double lessThanHalfMaxHeight = halfMaxHeight / 2;
 
     /** TODO
      * Create the letter A graphically
      * @return BaseShape containing the letter A
      */
     public static BaseShape create_A()  {
-        Double angle1 = Math.PI / 6;
-        Double angle2 = 11 * Math.PI / 6;
-        Rectangle rectangle1 = new Rectangle(stripeThickness, maxHeight);
+        Double angle1 = (Math.PI - 1.5) / 6;
+        Double angle2 = (11 * Math.PI + 1.5) / 6;
+        Double angle3 = Math.PI / 2;
+        Rectangle rectangle1 = new Rectangle(halfStripeThickness, maxHeight);
+        Rectangle rectangle2 = new Rectangle(halfStripeThickness, maxHeight);
+        Rectangle rectangle3 = new Rectangle(halfStripeThickness, lessThanHalfMaxHeight);
+        Point2d translateVectorRectangle1 = new Point2d(3.0, 0.0);
+        Point2d translateVectorRectangle2 = new Point2d(42.5, 12.2);
+        Point2d translateVectorRectangle3 = new Point2d(30.0, 0.0);
         rectangle1.rotate(rectangle1.getCoords(), angle1);
-        Rectangle rectangle2 = new Rectangle(stripeThickness, maxHeight);
-        Point2d translateVector = new Point2d(50.0, 0.0);
-        rectangle2.translate(rectangle2.getCoords(), translateVector);
+        rectangle2.translate(rectangle2.getCoords(), translateVectorRectangle2);
+        rectangle1.translate(rectangle1.getCoords(), translateVectorRectangle1);
         rectangle2.rotate(rectangle2.getCoords(), angle2);
+        rectangle3.rotate(rectangle3.getCoords(), angle3);
+        rectangle3.translate(rectangle3.getCoords(), translateVectorRectangle3);
         BaseShape finalShape = new BaseShape(rectangle1.cloneCoords());
         finalShape.addAll(rectangle2.cloneCoords());
+        finalShape.addAll(rectangle3.cloneCoords());
         return finalShape;
     }
 
